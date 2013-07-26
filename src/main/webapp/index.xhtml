@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Register A Person</title>
+        <h:outputStylesheet name="css/baseStyle.css" />
+    </h:head>
+    <h:body>
+        <h1>Sign Up</h1>
+        <h:form>
+            <fieldset>
+                <legend>Enter Details</legend>
+                <h:panelGrid columns="2">
+                    <h:outputText value="USER ID:"/>
+                    <h:inputText value="#{controller.uid}" title="User Id" id="uid" required="true"/>                
+                    <h:outputText value="FIRST NAME:"/>
+                    <h:inputText value="#{controller.firstName}" title="First Name" id="fName" required="true"/>
+                    <h:outputText value="LAST NAME:"/>
+                    <h:inputText value="#{controller.lastName}" title="Last Name" id="lName" required="true"/>
+                    <h:outputText value="JOINED AT:"/>
+                    <h:inputText value="#{controller.dateOfJoin}" title="Date Of Joining (YYYY-MM-DD)" id="doj" required="true"/>
+                    <h:outputText value="DEPARTMENT:"/>
+                    <h:inputText value="#{controller.department}" title="Department" id="dept" required="false"/>
+                </h:panelGrid>
+            </fieldset>
+
+            <fieldset>
+                <legend>Control</legend>
+                <h:panelGrid columns="2">                    
+                    <h:commandButton action="#{controller.save}" value="Submit"/>
+                    <h:commandButton action="#{controller.reset}" value="Reset" />
+                </h:panelGrid>
+            </fieldset>
+                                    
+            <fieldset>
+                <legend>Posting To MFTS</legend>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Status:"/>
+                    <h:outputText value="#{controller.regnStatus}" id="regnStatus"/>
+                </h:panelGrid>
+            </fieldset>  
+
+            <fieldset>
+                <legend>Real Time Link to MFTS</legend>
+                <div id="sockMsg"></div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>MFTS Status</legend>
+                <h:panelGrid columns="2">                    
+                    <h:commandButton action="#{controller.getStatusAdminAPIView}" value="API View"/>
+                    <h:commandButton action="#{controller.getStatusAdminUIView}" value="Admin UI View"/>
+                </h:panelGrid>
+            </fieldset>
+        </h:form>
+        <h:outputScript name="js/wsocket.js" />
+    </h:body>
+</html>

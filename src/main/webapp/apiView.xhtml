@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>View Job Execution Status</title>
+        <h:outputStylesheet name="css/baseStyle.css" />
+    </h:head>
+    <h:body>
+        <h1>All Jobs</h1>
+        <h:form>
+            <fieldset>
+                <legend>Display Status</legend>
+
+                <h:dataTable value="#{controller.snapshotStatus.jobExecutions}" var="jobInstance" styleClass="order-table"
+                             headerClass="order-table-header"
+                             rowClasses="order-table-odd-row,order-table-even-row">
+                    <h:column>
+                        <f:facet name="header">Instance Id</f:facet>                        
+                            #{jobInstance.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Outcome</f:facet>                        
+                            #{jobInstance.status}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Start Time</f:facet>                        
+                            #{jobInstance.startTime}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Process Duration</f:facet>                        
+                            #{jobInstance.duration}
+                    </h:column>
+                </h:dataTable>                
+            </fieldset>
+            <fieldset>
+                <legend>Navigation</legend>
+                <h:panelGrid columns="2"> 
+                    <h:commandButton action="index.jsf" value="Home"/>
+                    <h:commandButton action="#{controller.getStatusAdminUIView}" value="Admin UI View"/>
+                </h:panelGrid>
+            </fieldset>
+        </h:form>        
+    </h:body>
+</html>
